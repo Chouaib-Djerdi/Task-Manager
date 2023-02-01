@@ -12,6 +12,12 @@ class TaskForm(ModelForm):
             'created':'Created:',
         }
         exclude = ['manager']
+
+        widgets = {
+            'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
+            'created': forms.DateInput(attrs={'class':'form-control', 'placeholder':'MM/DD/YY'})
+        }
         #we are converting this to modelform concept
         #complete the wigdets
         #change the type of date used

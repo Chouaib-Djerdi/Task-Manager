@@ -1,10 +1,29 @@
-{% extends 'task_app/base.html' %} {% block content %}
 
-  <form method="POST">
-    {% csrf_token %} {% for field in form %}
-    <div class="form-group">{{field.label_tag}}</div>
-    {{field}} {% endfor %}
+{% extends 'task_app/navbar.html' %} {% block content2 %}
+{% load static %}
+
+<div class="row my-5 align-items-center">
+  <form method="POST" class="col-6">
+    <img
+        class="mb-4"
+        src="https://play-lh.googleusercontent.com/pjUulZ-Vdo7qPKxk3IRhnk8SORPlgSydSyYEjm7fGcoXO8wDyYisWXwQqEjMryZ_sqK2"
+        alt=""
+        width="72"
+        height="72"
+      />
+
+      <h1 style="display: inline">Add Your Task</h1>
+    {% csrf_token %} 
+    {% for field in form %}
+    {% comment %} <div class="form-group">{{field.label_tag}}</div> {% endcomment %}
+        {{field}} 
+    {% endfor %}
+    <br>
     <input type="submit" class="btn btn-outline-success" value="Add Task">
   </form>
+  <div class="col-6">
+    <img src="{% static 'members/Task-amico.png' %}" alt="" width="512" height="512">
+  </div>
+</div>
 
-{% endblock content %}
+{% endblock content2 %}
