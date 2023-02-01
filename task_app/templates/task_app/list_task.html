@@ -1,0 +1,26 @@
+{% extends 'task_app/navbar.html' %} {% block content2 %}
+
+<h3>Tasks List :</h3>
+<div class="card-columns">
+  {% for task in all_tasks %}
+
+  <div class="card border-primary mb-3" style="max-width: 25rem">
+    <div class="card-header">
+      <h5 class="card-title">
+        <a href="{% url 'task_app:detail_task' task.id %}"> {{task}} </a>
+      </h5>
+    </div>
+    <div class="card-body text-dark">
+      <p class="card-text">{{task.description}}</p>
+    </div>
+    <div class="card-footer">
+      <a
+        href="{% url 'task_app:delete_task' task.id%}"
+        class="btn btn-outline-danger btn-sm"
+      >Delete</a>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock content2 %}

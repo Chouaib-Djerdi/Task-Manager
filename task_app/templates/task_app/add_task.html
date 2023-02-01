@@ -1,0 +1,10 @@
+{% extends 'task_app/base.html' %} {% block content %}
+
+  <form method="POST">
+    {% csrf_token %} {% for field in form %}
+    <div class="form-group">{{field.label_tag}}</div>
+    {{field}} {% endfor %}
+    <input type="submit" class="btn btn-outline-success" value="Add Task">
+  </form>
+
+{% endblock content %}

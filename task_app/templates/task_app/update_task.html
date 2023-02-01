@@ -1,0 +1,17 @@
+{% extends 'task_app/base.html' %} {% block content %}
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Update" class="btn btn-outline-secondary">
+    </form>
+</div>
+
+
+
+{% endblock content %}
+
+
+
+

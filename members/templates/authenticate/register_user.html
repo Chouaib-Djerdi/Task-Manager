@@ -1,0 +1,32 @@
+{% extends 'task_app/base.html' %} {% block content %} {% if form.errors %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  There was an error in your form ...
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
+
+<div class="row h-100 justify-content-center align-items-center">
+  <form method="POST" class="col-12 register-form">
+    {% csrf_token %}
+    <div class="text-center">
+      <img
+        class="mb-4"
+        src="https://play-lh.googleusercontent.com/pjUulZ-Vdo7qPKxk3IRhnk8SORPlgSydSyYEjm7fGcoXO8wDyYisWXwQqEjMryZ_sqK2"
+        alt=""
+        width="72"
+        height="72"
+      />
+
+      <h1 style="display: inline">Task Manager</h1>
+    </div>
+    {{form.as_p}}
+    <input
+      type="submit"
+      value="Register"
+      class="btn btn-outline-primary btn-block"
+    />
+  </form>
+</div>
+{% endblock content %}
