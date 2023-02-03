@@ -1,52 +1,72 @@
 {% extends 'task_app/base.html' %} {% block content %}
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="#">
-      <img src="https://play-lh.googleusercontent.com/pjUulZ-Vdo7qPKxk3IRhnk8SORPlgSydSyYEjm7fGcoXO8wDyYisWXwQqEjMryZ_sqK2" width="30" height="30" class="d-inline-block align-top" alt=""> Task Manager</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: #e3f2fd"
+>
+  <a class="navbar-brand" href="#">
+    <img
+      src="https://play-lh.googleusercontent.com/pjUulZ-Vdo7qPKxk3IRhnk8SORPlgSydSyYEjm7fGcoXO8wDyYisWXwQqEjMryZ_sqK2"
+      width="30"
+      height="30"
+      class="d-inline-block align-top"
+      alt=""
+    />
+    Task Manager</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'task_app:list_task' %}"
+          >Tasks List<span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'task_app:add_task' %}">Add Task</a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'members:logout_user' %}">Log Out</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'members:login_user' %}">Log In</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'members:register_user' %}"
+          >Register</a
+        >
+      </li>
+      {% endif %}
+    </ul>
+    <form
+      method="POST"
+      action="{% url 'task_app:searchbar' %}"
+      class="form-inline my-2 my-lg-0"
     >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'task_app:list_task' %}"
-            >Tasks List<span class="sr-only">(current)</span></a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'task_app:add_task' %}"
-            >Add Task</a
-          >
-        </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'members:logout_user' %}">Log Out</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'members:login_user' %}">Log In</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'members:register_user' %}">Register</a>
-        </li>
-        {% endif %}
-      </ul>
-    </div>
-  </nav>
-  <div class="container">
-    {% block content2 %}{% endblock content2 %}
+      {% csrf_token %}
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search Task"
+        aria-label="Search"
+        name="searched"
+      />
+      <button class="btn btn-outline-primary my-2 my-sm-0">Search</button>
+    </form>
   </div>
-  
+</nav>
+<div class="container">{% block content2 %}{% endblock content2 %}</div>
 
 {% endblock content %}
-
-
-

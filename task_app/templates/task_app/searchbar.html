@@ -1,8 +1,7 @@
-{% extends 'task_app/navbar.html' %} {% block content2 %}
-
-<h1 class="my-2">Tasks List :</h1>
+{% extends 'task_app/navbar.html' %} {% block content2 %} {% if searched %}
+<h1 class="my-2">You've searched for {{searched}}</h1>
 <div class="card-columns">
-  {% for task in all_tasks %} {% if task.complete %}
+  {% for task in tasks %} {% if task.complete %}
 
   <div class="card border-success mb-3" style="max-width: 25rem">
     <div class="card-header">
@@ -20,7 +19,7 @@
       >
     </div>
     <div class="card-body text-success">
-      <p class="card-text m-0">{{task.description|linebreaks}}</p>
+      <p class="card-text">{{task.description}}</p>
       <a
         href="{% url 'task_app:delete_task' task.id%}"
         class="btn btn-outline-danger btn-sm"
@@ -38,7 +37,7 @@
       </h5>
     </div>
     <div class="card-body text-dark">
-      <p class="card-text m-0">{{task.description|linebreaks}}</p>
+      <p class="card-text">{{task.description}}</p>
       <a
         href="{% url 'task_app:delete_task' task.id%}"
         class="btn btn-outline-danger btn-sm"
@@ -48,4 +47,6 @@
   </div>
   {% endif %} {% endfor %}
 </div>
-{% endblock content2 %}
+{% else %}
+<h1 class="my-2">You forgot to input your search</h1>
+{% endif %} {% endblock content2 %}

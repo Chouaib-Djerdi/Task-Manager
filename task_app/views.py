@@ -3,6 +3,7 @@ from django.urls import reverse
 from . import models
 from .forms import TaskForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 # Create your views here.
 def hello(request):
@@ -46,3 +47,12 @@ def delete_task(request,pk):
     task.delete()
 
     return redirect(reverse('task_app:list_task'))
+
+@login_required
+def searchbar(request):
+    if request.method == "POST":
+        searched = request.POST["searched"]
+        tasks = models.Task.objects.filter(Q(title__contains=searched)|Q(description__contains=searched))
+        return render(request,'task_app/searchbar.html',context={'searched':searched,'tasks':tasks})
+    else:
+        return render(request,'task_app/searchbar.html')

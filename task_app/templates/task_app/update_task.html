@@ -1,20 +1,28 @@
 {% extends 'task_app/navbar.html' %} {% block content2 %} {% load static %}
 
-  <div class="row my-5 align-items-center">
-    <div class="col-6">
-      <img
-        src="{% static 'members/Task-cuate.png' %}"
-        alt=""
-        width="512"
-        height="512"
-      />
-    </div>
-    <form method="POST" class="col-6">
-      {% csrf_token %} {% for field in form %} {{field}} {% endfor %}
-      <br />
-      <input type="submit" value="Update" class="btn btn-outline-secondary" />
-    </form>
+<div class="row my-5 align-items-center">
+  <div class="col-6">
+    <img
+      src="{% static 'members/Task-cuate.png' %}"
+      alt=""
+      width="512"
+      height="512"
+    />
   </div>
+  <form method="POST" class="col-6">
+    <img
+      class="mb-4"
+      src="https://play-lh.googleusercontent.com/pjUulZ-Vdo7qPKxk3IRhnk8SORPlgSydSyYEjm7fGcoXO8wDyYisWXwQqEjMryZ_sqK2"
+      alt=""
+      width="72"
+      height="72"
+    />
 
+    <h1 style="display: inline">Update Your Task</h1>
+    {% csrf_token %} {% for field in form %} {{field}} {% endfor %}
+    <br />
+    <input type="submit" value="Update" class="btn btn-outline-secondary" />
+  </form>
+</div>
 
 {% endblock content2 %}

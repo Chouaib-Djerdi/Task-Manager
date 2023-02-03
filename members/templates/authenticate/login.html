@@ -1,38 +1,52 @@
-{% extends 'task_app/base.html' %} {% block content %}
-{% load static %}
-<div class="row h-100 align-items-center text-center">
-  <div class="col-6">
-    <img src="{% static 'members/taskbro.png' %}" alt="" width="512" height="512">
+{% extends 'task_app/base.html' %} {% block content %} {% load static %}
+<div class="container h-100">
+  <div class="row h-100 align-items-center text-center">
+    <div class="col-6">
+      <img
+        src="{% static 'members/taskbro.png' %}"
+        alt=""
+        width="512"
+        height="512"
+      />
+    </div>
+    <form method="POST" class="col-6 myform">
+      {% csrf_token %}
+      <img
+        class="mb-4"
+        src="https://play-lh.googleusercontent.com/pjUulZ-Vdo7qPKxk3IRhnk8SORPlgSydSyYEjm7fGcoXO8wDyYisWXwQqEjMryZ_sqK2"
+        alt=""
+        width="72"
+        height="72"
+      />
+      <h3 class="mx-2" style="display: inline">Task Manager</h3>
+      <h1 class="h3 mb-3 font-weight-normal">Please log in</h1>
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="sr-only">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          placeholder="Enter Username"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1" class="sr-only">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          placeholder="Password"
+        />
+      </div>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">
+        Log in
+      </button>
+      <br />
+      <p>
+        Don't have an account
+        <a href="{% url 'members:register_user' %}">Register Here.</a>
+      </p>
+    </form>
   </div>
-  <form method="POST" class="col-6 myform" >
-    {% csrf_token %}
-    <img class="mb-4" src="https://play-lh.googleusercontent.com/pjUulZ-Vdo7qPKxk3IRhnk8SORPlgSydSyYEjm7fGcoXO8wDyYisWXwQqEjMryZ_sqK2" alt="" width="72" height="72">
-    <h3 class="mx-2" style="display: inline">Task Manager</h3>
-    <h1 class="h3 mb-3 font-weight-normal">Please log in</h1>
-    <div class="form-group">
-      <label for="exampleInputEmail1" class="sr-only">Username</label>
-      <input
-        type="text"
-        class="form-control"
-        name="username"
-        placeholder="Enter Username"
-      />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1" class="sr-only">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        name="password"
-        placeholder="Password"
-      />
-    </div>
-    <button class="btn btn-primary btn-lg btn-block" type="submit">
-      Log in
-    </button>
-    <br>
-    <p>Don't have an account <a href="{% url 'members:register_user' %}">Register Here.</a></p>
-  </form>
 </div>
-
 {% endblock content %}

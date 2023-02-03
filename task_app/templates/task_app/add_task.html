@@ -15,7 +15,6 @@
       <h1 style="display: inline">Add Your Task</h1>
     {% csrf_token %} 
     {% for field in form %}
-    {% comment %} <div class="form-group">{{field.label_tag}}</div> {% endcomment %}
         {{field}} 
     {% endfor %}
     <br>
